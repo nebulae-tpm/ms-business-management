@@ -27,7 +27,7 @@ class Business {
   constructor() {}
 
  /**
-   * Gets the business where the user that is performing the request belong.
+   * Gets the business where the user that is performing the request belong
    *
    * @param {*} args args
    * @param {*} args.businessId business ID
