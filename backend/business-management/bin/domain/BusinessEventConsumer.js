@@ -49,7 +49,7 @@ class BusinessEventConsumer {
 
     /**
      * updates the business state on the materialized view according to the received data from the event store.
-     * @param {*} businessState events that indicates the new state of the business
+     * @param {*} businessState events that indicates the new state of the business.
      */
     handleBusinessState$(businessStateEvent) {          
         return BusinessDA.changeBusinessState$(businessStateEvent.aid, businessStateEvent.data)
