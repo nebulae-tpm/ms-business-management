@@ -8,7 +8,7 @@ const contextName = "Business-Management";
 const Rx = require("rxjs");
 
 //Every single error code
-// please use the prefix assigned to this microservice
+// please use the prefix assigned to this microservice.
 const INTERNAL_SERVER_ERROR_CODE = 15001;
 const BUSINESS_PERMISSION_DENIED_ERROR_CODE = 15002;
 

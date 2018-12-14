@@ -191,7 +191,7 @@ class GraphQlService {
   }
 
   /**
-   * returns a map that assocs GraphQL request with its processor
+   * returns a map that assocs GraphQL request with its processor.
    */
   generateFunctionMap() {
     return {
