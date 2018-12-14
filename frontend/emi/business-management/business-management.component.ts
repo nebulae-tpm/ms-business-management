@@ -91,7 +91,7 @@ export class BusinessManagementComponent implements OnInit, OnDestroy {
       this.sortOrder
     );
 
-    //When a new business is created, updated or deleted is neccesary to add or refresh the element in the table.
+    //When a new business is created, updated or deleted is neccesary to add or refresh the element in the table
       this.businessManagementervice
         .subscribeBusinessUpdatedSubscription$()
         .pipe(

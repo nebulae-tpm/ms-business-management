@@ -45,7 +45,7 @@ jobs:
             source ~/nebulae/repo/.circleci/scripts/gitChanged.sh
             cd ~/nebulae/repo/
             mkdir -p ~/nebulae/frontend/shell 
-            gitChanged frontend || ( git clone --depth=1 https://github.com/nebulae-tmp/emi ~/nebulae/frontend/shell )      
+            gitChanged frontend || ( git clone --depth=1 https://github.com/nebulae-tpm/emi ~/nebulae/frontend/shell )      
       - run:
           name: commit & push package-lock.json changes
           command: |

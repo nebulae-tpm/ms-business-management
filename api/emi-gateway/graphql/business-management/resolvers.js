@@ -26,7 +26,7 @@ function getResponseFromBackEnd$(response) {
 }
 
 /**
- * Handles errors
+ * Handles errors.
  * @param {*} err
  * @param {*} operationName
  */
