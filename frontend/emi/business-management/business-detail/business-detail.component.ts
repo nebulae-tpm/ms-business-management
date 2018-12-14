@@ -68,7 +68,6 @@ export class BusinessDetailComponent implements OnInit {
   set businessDetailAction(businessDetailAction: any) {
     this._businessDetailAction = businessDetailAction;
     this.addNewBusiness = businessDetailAction == "ADD";
-    // console.log('addNewBusiness => ', this.addNewBusiness);
     this.selectedBusiness = {
       generalInfo: {},
       active: false

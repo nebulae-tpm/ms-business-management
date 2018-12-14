@@ -117,7 +117,7 @@ class GraphQlService {
 
 
   /**
-   * returns an array of broker subscriptions for listening to GraphQL requests
+   * returns an array of broker subscriptions for listening to GraphQL requests.
    */
   getSubscriptionDescriptors() {
     //default on error handler
@@ -191,7 +191,7 @@ class GraphQlService {
   }
 
   /**
-   * returns a map that assocs GraphQL request with its processor
+   * returns a map that assocs GraphQL request with its processor.
    */
   generateFunctionMap() {
     return {
