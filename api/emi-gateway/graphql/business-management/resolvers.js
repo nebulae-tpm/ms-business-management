@@ -10,8 +10,8 @@ const { mergeMap, catchError, map } = require("rxjs/operators");
 
 //Every single error code
 // please use the prefix assigned to this microservice.
-const INTERNAL_SERVER_ERROR_CODE = 15001;
-const BUSINESS_PERMISSION_DENIED_ERROR_CODE = 15002;
+const INTERNAL_SERVER_ERROR_CODE = 1;
+const BUSINESS_PERMISSION_DENIED_ERROR_CODE = 2;
 
 function getResponseFromBackEnd$(response) {
   return of(response).pipe(
@@ -20,6 +20,7 @@ function getResponseFromBackEnd$(response) {
         const err = new Error();
         err.name = "Error";
         err.message = resp.result.error;
+        err.stack = err.stack;
         Error.captureStackTrace(err, "Error");
         throw err;
       }
@@ -128,6 +129,7 @@ module.exports = {
         .toPromise();
     },
     getBusinesses(root, args, context) {
+      console.log("getBusinesses", args);
       return RoleValidator.checkPermissions$(
         context.authToken.realm_access.roles,
         contextName,

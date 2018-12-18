@@ -108,6 +108,7 @@ class Business {
    */
   getBusinesses$({ args }, authToken) {
     // const requestedFields = this.getProjection(fieldASTs);
+    console.log("getBusinesses$", args);
     return RoleValidator.checkPermissions$(
       authToken.realm_access.roles,
       "BusinessManagement",
