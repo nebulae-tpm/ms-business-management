@@ -184,6 +184,26 @@ class BusinessDA {
   }
 
   /**
+   * modifies the general info of the indicated business 
+   * @param {*} id  Business ID
+   * @param {*} businessGeneralInfo  New general information of the business
+   */
+  static updateBusinessContactInfo$(businessId, businessContactInfo) {
+    const collection = mongoDB.db.collection(CollectionName);
+
+    return Rx.Observable.defer(()=>
+      collection.findOneAndUpdate(
+        { _id: businessId },
+        {
+          $set: { contactInfo: businessContactInfo }
+        }, {
+          returnOriginal: false
+        }
+      )
+    ).map(result => result && result.value ? result.value : undefined);
+  }
+
+  /**
    * modifies the attributes of the indicated business 
    * @param {*} id  Business ID
    * @param {*} businessAttributes  New attributes of the business

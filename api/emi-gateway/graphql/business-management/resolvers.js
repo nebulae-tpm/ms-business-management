@@ -270,7 +270,30 @@ module.exports = {
           mergeMap(response => getResponseFromBackEnd$(response))
         )
         .toPromise();
-    }
+    },
+    updateBusinessContactInfo(root, args, context) {
+      return RoleValidator.checkPermissions$(
+        context.authToken.realm_access.roles,
+        contextName,
+        "updateBusinessContactInfo",
+        BUSINESS_PERMISSION_DENIED_ERROR_CODE,
+        "Permission denied",
+        ["PLATFORM-ADMIN"]
+      )
+        .pipe(
+          mergeMap(() =>
+            context.broker.forwardAndGetReply$(
+              "Business",
+              "emigateway.graphql.mutation.updateBusinessContactInfo",
+              { root, args, jwt: context.encodedToken },
+              2000
+            )
+          ),
+          catchError(err => handleError$(err, "updateBusinessContactInfo")),
+          mergeMap(response => getResponseFromBackEnd$(response))
+        )
+        .toPromise();
+    },
   },
 
   //// SUBSCRIPTIONS ///////

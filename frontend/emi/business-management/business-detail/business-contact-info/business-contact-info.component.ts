@@ -30,20 +30,12 @@ export class Attribute {
 })
 export class BusinessContactInfoComponent implements OnInit {
 
-  ////////////// TABLE //////////////
-  dataSource: TableDataSource<Attribute>;
-  displayedColumns = ['key', 'value', 'actionsColumn'];
 
   ////////////// BUSINESS ATTRIBUTES //////////////
-  @Input() businessAttributeList = [] ;
-  @Output() businessAttributesListChange = new EventEmitter<Attribute[]>();
+  @Input() business: any;
 
-
-  businessForm: FormGroup;
-  _businessId: String;
-  _businessDetailAction: String;
-  selectedBusiness: any;
-  addNewBusiness: Boolean;
+  // FORM ////
+  businessContactInfoForm: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -54,7 +46,22 @@ export class BusinessContactInfoComponent implements OnInit {
 
 
   ngOnInit() {
+    console.log('SELECTED BUSINESS', this.business);
 
+    this.businessContactInfoForm = new FormGroup({
+      whatsapp: new FormControl((this.business && this.business.contactInfo) ? this.business.contactInfo.whatsapp : null ),
+      phone: new FormControl((this.business && this.business.contactInfo) ? this.business.contactInfo.phone : null),
+      zello: new FormControl((this.business && this.business.contactInfo) ? this.business.contactInfo.zello : null)
+    });
+
+  }
+
+  saveBusinessContactInfo(){
+    this.businessDetailService.updateBusinessContactInfo$(this.business._id, this.businessContactInfoForm.getRawValue())
+    .pipe(
+
+    )
+    .subscribe(() => {}, err => console.log(err), () => console.log('FINISHED'));
   }
 
 

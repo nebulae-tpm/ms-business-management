@@ -406,6 +406,39 @@ class Business {
       .catch(err => this.handleError$(err));
   }
 
+  updateBusinessContatInfo$({ root, args, jwt }, authToken){
+    console.log('updateBusinessContatInfo', args);
+    return RoleValidator.checkPermissions$(
+      authToken.realm_access.roles,
+      "BusinessManagement",
+      "updateBusinessContatInfo$()",
+      BUSINESS_PERMISSION_DENIED_ERROR_CODE,
+      "Permission denied",
+      ["PLATFORM-ADMIN"]
+    )
+      .mergeMap(() => {
+        return eventSourcing.eventStore.emitEvent$(
+          new Event({
+            eventType: "BusinessContactInfoUpdated",
+            eventTypeVersion: 1,
+            aggregateType: "Business",
+            aggregateId: args.id,
+            data: args.input,
+            user: authToken.preferred_username
+          })
+        );
+      })
+      .map(() => ({
+        code: 200,
+        message: `Business with id: ${id} has been updated its contact info`
+      })
+      )
+      .mergeMap(rawResponse => this.buildSuccessResponse$(rawResponse))
+      .catch(err => this.handleError$(err));
+
+
+  }
+
   //#region  mappers for API responses
 
   handleError$(err) {

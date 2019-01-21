@@ -10,9 +10,14 @@ export const getBusiness = gql`
         documentType
         documentId
         name
-        type      
+        type
         email
         contactInfo
+      }
+      contactInfo{
+        whatsapp
+        phone
+        zello
       }
       attributes{
         key
@@ -36,6 +41,15 @@ export const persistBusiness = gql`
 export const updateBusinessGeneralInfo = gql`
   mutation updateBusinessGeneralInfo($id: ID, $input: BusinessGeneralInfoInput) {
     updateBusinessGeneralInfo(id: $id, input: $input) {
+      code
+      message
+    }
+  }
+`;
+
+export const updateBusinessContactInfo = gql`
+  mutation updateBusinessContactInfo($id: ID, $input: BusinessContactInfoInput) {
+    updateBusinessContactInfo(id: $id, input: $input) {
       code
       message
     }

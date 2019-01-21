@@ -15,7 +15,8 @@ import {
   updateBusinessGeneralInfo,
   updateBusinessAttributes,
   updateBusinessState,
-  persistBusiness
+  persistBusiness,
+  updateBusinessContactInfo
 } from '../gql/BusinessDetail';
 import { Subscription, Subject } from 'rxjs';
 // tslint:disable-next-line:import-blacklist
@@ -126,6 +127,18 @@ export class BusinessDetailService {
         variables: {
           id: id,
           input: businessGeneralInfoInput
+        },
+        errorPolicy: 'all'
+      });
+  }
+
+  updateBusinessContactInfo$(id, businessContactInfo){
+    return this.gateway.apollo
+      .mutate<any>({
+        mutation: updateBusinessContactInfo,
+        variables: {
+          id: id,
+          input: businessContactInfo
         },
         errorPolicy: 'all'
       });

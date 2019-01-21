@@ -135,6 +135,10 @@ class EventStoreService {
         fn: businessEventConsumer.handleBusinessState$,
         obj: businessEventConsumer
       },
+      BusinessContactInfoUpdated: {
+        fn: businessEventConsumer.handleBusinessContactInfoUpdated$,
+        obj: businessEventConsumer
+      }
     };
   }
 
@@ -162,7 +166,11 @@ class EventStoreService {
       {
         aggregateType: "Business",
         eventType: "BusinessDeactivated"
-      }, 
+      },
+      {
+        aggregateType: "Business",
+        eventType: "BusinessContactInfoUpdated"
+      }
     ]
   }
 }

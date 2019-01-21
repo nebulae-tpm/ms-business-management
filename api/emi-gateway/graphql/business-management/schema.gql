@@ -39,6 +39,8 @@ type Business {
   _id: ID
   "Business general info"
   generalInfo: GeneralInfo
+  "Business contact info"
+  contactInfo: BusinessContactInfo
   "Business attributes"
   attributes: [BusinessAttributes],
   "Business status"
@@ -58,6 +60,18 @@ type GeneralInfo {
   email: String,
   "Business contact info"
   contactInfo: String
+}
+
+type BusinessContactInfo {
+  whatsapp: BigInt
+  phone: BigInt
+  zello: String  
+}
+
+input BusinessContactInfoInput {
+  whatsapp: BigInt
+  phone: BigInt
+  zello: String
 }
 
 type BusinessAttributes {
@@ -106,6 +120,9 @@ type Mutation {
 
   "Updates the business general info"
   updateBusinessGeneralInfo(id:ID, input: BusinessGeneralInfoInput): CommandResponse
+
+  "Updates the business general info"
+  updateBusinessContactInfo(id:ID, input: BusinessContactInfoInput): CommandResponse
 
 
   "Updates the business attributes"
