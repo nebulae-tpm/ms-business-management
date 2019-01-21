@@ -95,6 +95,13 @@
                 <app-business-attributes *ngIf="selectedBusiness" businessId="{{selectedBusiness._id}}" (businessAttributesListChange)="handleBusinessAttributesChangedEvent($event)"></app-business-attributes>
             </div>
         </mat-tab>
+        <mat-tab label="{{'BUSINESS.CONTACT_INFO' | translate}}" *ngIf="!addNewBusiness && selectedBusiness._id">
+          <div  class="w-100-p">
+              <mat-divider></mat-divider>
+              <business-contact-info></business-contact-info>
+              <!-- <app-business-attributes *ngIf="selectedBusiness" businessId="{{selectedBusiness._id}}" (businessAttributesListChange)="handleBusinessAttributesChangedEvent($event)"></app-business-attributes> -->
+          </div>
+      </mat-tab>
       </mat-tab-group>
         </div>
       </form>

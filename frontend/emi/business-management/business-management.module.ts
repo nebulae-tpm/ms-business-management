@@ -11,6 +11,7 @@ import { BusinessDetailComponent } from './business-detail/business-detail.compo
 import { BusinessDialogComponent } from './business-detail/business-dialog/business-dialog.component';
 import { BusinessAttributesComponent } from './business-detail/business-attributes/business-attributes.component';
 import { BusinessAttributesValidatorService } from './business-detail/business-attributes/business-attributes-validator.service';
+import { BusinessContactInfoComponent } from './business-detail/business-contact-info/business-contact-info.component';
 
 const routes: Routes = [
   {
@@ -29,7 +30,8 @@ const routes: Routes = [
     BusinessManagementComponent,
     BusinessDetailComponent,
     BusinessDialogComponent,
-    BusinessAttributesComponent
+    BusinessAttributesComponent,
+    BusinessContactInfoComponent
   ],
   entryComponents: [BusinessDialogComponent],
   providers: [ BusinessManagementService, BusinessDetailService, DatePipe, BusinessAttributesValidatorService]
