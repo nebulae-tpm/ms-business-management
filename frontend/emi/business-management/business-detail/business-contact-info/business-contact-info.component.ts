@@ -56,7 +56,6 @@ export class BusinessContactInfoComponent implements OnInit {
 
   @Input()
   set business(businessInput: any) {
-     console.log('Business que entra en input de contact info', businessInput);
      this._business = businessInput;
 
      this.businessContactInfoForm = new FormGroup({
