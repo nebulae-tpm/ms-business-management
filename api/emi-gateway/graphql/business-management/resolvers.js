@@ -295,7 +295,6 @@ module.exports = {
         .toPromise();
     },
   },
-
   //// SUBSCRIPTIONS ///////
   Subscription: {
     BusinessUpdatedSubscription: {

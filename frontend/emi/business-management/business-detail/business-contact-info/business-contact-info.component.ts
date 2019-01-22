@@ -46,7 +46,6 @@ export class BusinessContactInfoComponent implements OnInit {
 
 
   ngOnInit() {
-
   }
 
   saveBusinessContactInfo() {
