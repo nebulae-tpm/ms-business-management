@@ -32,7 +32,7 @@ export class BusinessContactInfoComponent implements OnInit {
 
 
   ////////////// BUSINESS ATTRIBUTES //////////////
-  @Input() business: any;
+  _business: any;
 
   // FORM ////
   businessContactInfoForm: FormGroup;
@@ -46,22 +46,24 @@ export class BusinessContactInfoComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log('SELECTED BUSINESS', this.business);
-
-    this.businessContactInfoForm = new FormGroup({
-      whatsapp: new FormControl((this.business && this.business.contactInfo) ? this.business.contactInfo.whatsapp : null ),
-      phone: new FormControl((this.business && this.business.contactInfo) ? this.business.contactInfo.phone : null),
-      zello: new FormControl((this.business && this.business.contactInfo) ? this.business.contactInfo.zello : null)
-    });
 
   }
 
-  saveBusinessContactInfo(){
-    this.businessDetailService.updateBusinessContactInfo$(this.business._id, this.businessContactInfoForm.getRawValue())
-    .pipe(
+  saveBusinessContactInfo() {
+    this.businessDetailService.updateBusinessContactInfo$(this._business._id, this.businessContactInfoForm.getRawValue())
+      .subscribe(() => { }, err => console.log(err), () => console.log('FINISHED'));
+  }
 
-    )
-    .subscribe(() => {}, err => console.log(err), () => console.log('FINISHED'));
+  @Input()
+  set business(businessInput: any) {
+     console.log('Business que entra en input de contact info', businessInput);
+     this._business = businessInput;
+
+     this.businessContactInfoForm = new FormGroup({
+      whatsapp: new FormControl((this._business && this._business.contactInfo) ? this._business.contactInfo.whatsapp : null ),
+      phone: new FormControl((this._business && this._business.contactInfo) ? this._business.contactInfo.phone : null),
+      zello: new FormControl((this._business && this._business.contactInfo) ? this._business.contactInfo.zello : null)
+    });
   }
 
 
